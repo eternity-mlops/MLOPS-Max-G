@@ -34,3 +34,20 @@ Projekt polegał na przeniesieniu usługi z modelem **TinyLlama-1.1B** z tradycy
 
 ### 4. Test uśmiercenia kontenera (docker kill)
 ![Screen 4](4.png)
+
+## Porównanie: systemd vs Docker Compose
+
+| Cecha / Metryka | systemd (Pracownia 2) | Docker Compose (Pracownia 3) |
+| :--- | :--- | :--- |
+| **Zajmowane miejsce na dysku** | ~1.2 GB (sam plik llamafile) | ~4.38 GB (obraz Docker z systemem) |
+| **Czas od uruchomienia do 1. odpowiedzi** | ~3 sekundy | ~5 sekund |
+| **Zużycie pamięci (RAM)** | ~850 MB | ~920 MB |
+| **Liczba kroków do uruchomienia na nowej VM** | 6 kroków (zależności, chmod, service, reload, start) | 2 kroki (`git clone` + `docker compose up -d`) |
+
+## Uzasadnienie alokacji wag
+Wagi modelu zostały wbudowane bezpośrednio do obrazu na etapie budowania (multi-stage build). Wybrano to rozwiązanie, aby zapewnić pełną samowystarczalność obrazu i łatwość wdrażania usługi bez konieczności ręcznego montowania zewnętrznych wolumenów na nowej maszynie.
+
+## Wypchnięcie do rejestru
+Obraz został wypchnięty do rejestru poleceniem:
+```bash
+docker push Masiu1337/pracownia-3-llamafile:latest
