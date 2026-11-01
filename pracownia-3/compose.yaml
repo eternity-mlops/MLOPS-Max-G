@@ -1,0 +1,13 @@
+services:
+  llamafile:
+    build: .
+    container_name: llamafile-service
+    ports:
+      - "192.168.128.2:8080:8080"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/v1/models || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
