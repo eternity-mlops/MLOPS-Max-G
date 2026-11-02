@@ -21,4 +21,4 @@ ENV HOME=/opt/llamafile
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/sh", "/opt/llamafile/model.llamafile"]
+ENTRYPOINT ["/bin/sh", "-c", "exec /opt/llamafile/model.llamafile --server --nobrowser --host 0.0.0.0 --port 8080"]

@@ -6,8 +6,8 @@ services:
       - "192.168.128.2:8080:8080"
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/v1/models || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 15s
+      test: ["CMD-SHELL", "grep -i :1F90 /proc/net/tcp || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
