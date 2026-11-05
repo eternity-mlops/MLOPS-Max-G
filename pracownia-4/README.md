@@ -15,7 +15,9 @@ Polecenie uruchamiające:
 Test działania usługi:
 `curl -s http://localhost:32061/v1/models`
 
-Odpowiedź z modelu `1.png`.
+Odpowiedź z modelu:
+
+![Test REST API](1.png)
 
 ## 3. Aktualizacja i wycofanie (Rollout)
 Test nieudanej aktualizacji do wersji `llm:1.1`:
@@ -24,7 +26,9 @@ Test nieudanej aktualizacji do wersji `llm:1.1`:
 Wycofanie do stabilnej wersji:
 `kubectl rollout undo deploy/llm`
 
-Wynik wycofania zmian `2.png`.
+Wynik wycofania zmian:
+
+![Rollout undo](2.png)
 
 ## 4. Porównanie: Docker Compose vs k3s
 
